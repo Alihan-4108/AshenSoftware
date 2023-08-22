@@ -126,16 +126,16 @@ namespace AshenSoftware.Extension
         #endregion
 
         #region EnemyKnockBack
-        public static void EnemyKnockBack(this GameObject gameObject, Rigidbody2D rb, PlayerController player, float strength)
-        {
-            Vector3 direction = new Vector2(player.movementDirectionX, gameObject.transform.position.y);
+     //   public static void EnemyKnockBack(this GameObject gameObject, Rigidbody2D rb, PlayerController player, float strength)
+       // {
+         //   Vector3 direction = new Vector2(player.movementDirectionX, gameObject.transform.position.y);
 
-            rb.velocity = Vector2.zero;
+           // rb.velocity = Vector2.zero;
 
-            Vector2 knockback = direction * strength;
+            //Vector2 knockback = direction * strength;
 
-            rb.velocity = new Vector2(knockback.x, 15f);
-        }
+            //rb.velocity = new Vector2(knockback.x, 15f);
+        //}
         #endregion
     }
 }
