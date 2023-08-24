@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using AshenSoftware.Helpers;
 
 namespace AshenSoftware.Extension
 {
@@ -105,37 +104,6 @@ namespace AshenSoftware.Extension
             yield return new WaitForSecondsRealtime(duration);
             Time.timeScale = 1;
         }
-        #endregion
-
-        #region Flash
-        public static void Flash(this MonoBehaviour monoBehaviour, GameObject gameObject, SpriteRenderer sprite, Material flashMaterial, float duration, Coroutine flashCoroutine = null)
-        {
-            Material originalMaterial;
-
-            sprite = gameObject.GetComponent<SpriteRenderer>();
-
-            originalMaterial = sprite.material;
-
-            if (flashCoroutine != null)
-            {
-                monoBehaviour.StopCoroutine(flashCoroutine);
-            }
-
-            flashCoroutine = monoBehaviour.StartCoroutine(AshenSoftwareHelpers.FlashRoutine(sprite, flashMaterial, originalMaterial, flashCoroutine, duration));
-        }
-        #endregion
-
-        #region EnemyKnockBack
-     //   public static void EnemyKnockBack(this GameObject gameObject, Rigidbody2D rb, PlayerController player, float strength)
-       // {
-         //   Vector3 direction = new Vector2(player.movementDirectionX, gameObject.transform.position.y);
-
-           // rb.velocity = Vector2.zero;
-
-            //Vector2 knockback = direction * strength;
-
-            //rb.velocity = new Vector2(knockback.x, 15f);
-        //}
         #endregion
     }
 }
