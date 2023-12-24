@@ -65,6 +65,13 @@ namespace AshenSoftware.Extension
         }
         #endregion
 
+        #region LoadActiveScene
+        public static void LoadActiveScene()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        }
+        #endregion
+
         #region FindChildByName
         public static Transform FindChildByName(this GameObject parent, string name)
         {
@@ -87,22 +94,6 @@ namespace AshenSoftware.Extension
         public static Tween DoMusicSoundReduction(this AudioSource music, float endValue, float duration)
         {
             return DOTween.To(() => music.volume, x => music.volume = x, endValue, duration);
-        }
-        #endregion
-
-        #region CameraShake
-        public static void CameraShake(this Camera mainCamera, float duration = 0.1f, float strength = 0.15f, int vibrato = 2, float randomness = 5, bool fadeOut = true, ShakeRandomnessMode shakeRandomnessMode = ShakeRandomnessMode.Harmonic)
-        {
-            mainCamera.DOShakePosition(duration, strength, vibrato, randomness, fadeOut, shakeRandomnessMode).OnComplete(() => mainCamera.transform.position = new Vector3(0f, 0f, -10));
-        }
-        #endregion
-
-        #region Sleep
-        public static IEnumerator Sleep(this MonoBehaviour monoBehaviour, float duration)
-        {
-            Time.timeScale = 0;
-            yield return new WaitForSecondsRealtime(duration);
-            Time.timeScale = 1;
         }
         #endregion
     }
