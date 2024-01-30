@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -90,10 +88,10 @@ namespace AshenSoftware.Extension
         }
         #endregion
 
-        #region DoMusicSoundReduction
-        public static Tween DoMusicSoundReduction(this AudioSource music, float endValue, float duration)
+        #region DoSoundVolume
+        public static Tween DoSoundVolume(this AudioSource music, float endValue, float duration, Ease ease = Ease.InOutQuad)
         {
-            return DOTween.To(() => music.volume, x => music.volume = x, endValue, duration);
+            return DOTween.To(() => music.volume, x => music.volume = x, endValue, duration).SetEase(ease);
         }
         #endregion
     }
