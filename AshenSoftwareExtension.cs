@@ -1,9 +1,9 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace AshenSoftware.Extension
+namespace TurulGamesExtension.Extension
 {
-    public static class AshenSoftwareExtension
+    public static class TurulGamesExtension
     {
         #region Normal Debug
         public static void Debug(this object obj)
