@@ -1,2 +1,2 @@
-# AshenSoftware
-Ashen Software Extension
+# Turul Games
+Turul Games Extension
