@@ -41,20 +41,6 @@ namespace TurulGamesExtension.Extension
         }
         #endregion
 
-        #region SetActiveCollider
-        public static void SetActiveCollider(this Collider2D collider, bool isActive)
-        {
-            collider.enabled = isActive;
-        }
-        #endregion
-
-        #region SetActiveSprite
-        public static void SetActiveSprite(this SpriteRenderer sprite, bool isActive)
-        {
-            sprite.enabled = isActive;
-        }
-        #endregion
-
         #region SetActiveColliderAndSprite
         public static void SetActiveColliderAndSprite(this GameObject gameObject, bool isActive)
         {
