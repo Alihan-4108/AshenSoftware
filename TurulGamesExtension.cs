@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
 
-namespace TurulGamesExtension.Extension
+namespace AshenSoftware.Extension
 {
-    public static class TurulGamesExtension
+    public static class AshenSoftwareExtension
     {
         #region Normal Debug
         public static void Debug(this object obj)
@@ -49,15 +51,8 @@ namespace TurulGamesExtension.Extension
         }
         #endregion
 
-        #region LoadActiveScene
-        public static void LoadActiveScene()
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
-        }
-        #endregion
-
         #region FindChildByName
-        public static Transform FindChildByName(this GameObject parent, string name)
+        public static Transform FindChildrenByName(this GameObject parent, string name)
         {
             Transform[] children = parent.GetComponentsInChildren<Transform>(true);
 
@@ -74,10 +69,53 @@ namespace TurulGamesExtension.Extension
         }
         #endregion
 
-        #region DoSoundVolume
-        public static Tween DoSoundVolume(this AudioSource music, float endValue, float duration, Ease ease = Ease.InOutQuad)
+        #region FindChildrensWithTag
+        public static List<GameObject> FindChildrensWithTag(this GameObject parent, string tag)
         {
-            return DOTween.To(() => music.volume, x => music.volume = x, endValue, duration).SetEase(ease);
+            List<GameObject> children = new List<GameObject>();
+            Transform[] childTransform = parent.GetComponentsInChildren<Transform>(true);
+
+            for (int i = 0; i < childTransform.Length; i++)
+            {
+                Transform child = childTransform[i];
+
+                if (child.CompareTag(tag))
+                {
+                    children.Add(child.gameObject);
+                }
+            }
+
+            return children;
+        }
+        #endregion
+
+        #region DoMusicSoundReduction
+        public static Tween DoMusicSoundReduction(this AudioSource music, float endValue, float duration)
+        {
+            return DOTween.To(() => music.volume, x => music.volume = x, endValue, duration);
+        }
+        #endregion
+
+        #region TimeFreeze
+        public static async UniTaskVoid TimeFreeze(float time = .05f)
+        {
+            bool isTimeFrozen = false;
+
+            if (isTimeFrozen)
+                return;
+
+            isTimeFrozen = true;
+            Time.timeScale = 0;
+
+            try
+            {
+                await UniTask.Delay((int)(time * 1000), ignoreTimeScale: true);
+            }
+            finally
+            {
+                Time.timeScale = 1;
+                isTimeFrozen = false;
+            }
         }
         #endregion
     }
